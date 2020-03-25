@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<h1><b>PACKAGE LIST</b></h1>
+<input type="button" id="new_input" value="New Input" onclick="showForm()">
+<input type="button" id="close_form" value="Close form" onclick="closeForm()"><br><br>
+<form action="#" method="post" id="form-input" style="display: none">
+    <fieldset>
+        <legend><b>PACKAGE INFORMATION PROCESSING</b></legend>
+        <br><br>
+        <fieldset>
+            <legend><b>GENERAL INFORMATION</b></legend>
+            <br><br>
+            <table>
+                <tr>
+                    <td>NAME:</td>
+                    <td><input type="text" id="name" name="name"></td>
+                </tr>
+                <tr>
+                    <td>QUANTITY:</td>
+                    <td><input type="number" id="quantity" name="quantity"></td>
+                </tr>
+                <tr>
+                    <td>ID:</td>
+                    <td><input type="text" id="productID" name="id"></td>
+                </tr>
+                <tr>
+                    <td>DESCRIPTION:</td>
+                    <td>
+                <textarea name="description" id="desc" rows="5" cols="40"
+                          placeholder="Package description"></textarea></td>
+                </tr>
+                <tr>
+                    <td>IMAGE:</td>
+                    <td>
+                        <input type="file" id="image" name="packageImage" accept="image/*"/>
+                        <img style="width: 200px" alt="Package Image" src="packageImage"></td>
+                </tr>
+            </table>
+            TYPE:
+            <input type="checkbox" id="wholePackage" name="type[]" value="1">Whole package
+            <input type="checkbox" id="fragile" name="type[]" value="2">Fragile
+            <input type="checkbox" id="assembly" name="type[]" value="3">Assembly
+            <input type="checkbox" id="liquid" name="type[]" value="8">Liquid
+            <input type="checkbox" id="agricultural" name="type[]" value="4">Agricultural
+            <input type="checkbox" id="electrical" name="type[]" value="5">Electrical
+            <input type="checkbox" id="waste" name="type[]" value="6">Waste
+            <input type="checkbox" id="biohazard" name="type[]" value="7">Biohazard
+            <input type="checkbox" id="medical" name="type[]" value="9">Medical
+        </fieldset>
+        <br><br>
+        <fieldset>
+            <legend><b>PROPOSITIONAL INFORMATION</b></legend>
+            <br><br>
+            <table><tr><td>Unit: </td><td><input type="text" id="unit" placeholder="Enter product's unit."></td></tr>
+                <tr>
+                    <td>
+                        Weight:
+                    </td>
+                    <td><input type="number" id='weight' name="weight">Kgs</td>
+                </tr>
+                <tr>
+                    <td>Height:</td>
+                    <td><input type="number" id='height' name="height">Cm</td>
+                </tr>
+                <tr>
+                    <td>Length:</td>
+                    <td><input type="number" id='length' name="length">Cm</td>
+                </tr>
+                <tr>
+                    <td>Width:</td>
+                    <td><input type="number" id="width" name="width">Cm</td>
+                </tr>
+            </table>
+            <br><br>
+        </fieldset>
+        <br><br>
+        <fieldset>
+            <legend><b>DELIVERY INFORMATION</b></legend>
+            <table>
+                <tr>
+                    <td>
+                        Provider:
+                    </td>
+                    <td><input type="text" id='provider' name="provider"><br></td>
+                </tr>
+                <tr>
+                    <td>Origin:</td>
+                    <td><input type="text" id='origin' name="origin"><br></td>
+                </tr>
+                <tr>
+                    <td>Destination:</td>
+                    <td><input type="text" id='dest' name="destination"><br></td>
+                </tr>
+                <tr>
+                    <td>Transporter:</td>
+                    <td><select id="transporter">
+                        <option value="slt">Select one</option>
+                        <option value="GHN">Giao hàng nhanh</option>
+                        <option value="GHTK">Giao hàng tiết kiệm</option>
+                        <option value="NJV">NinjaVan</option>
+                        <option value="VTP">Viettel Post</option>
+                        <option value="VNP">VN Post</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Transportation method:</td>
+                    <td><select id="transMethod">
+                        <option value="slt">Select one</option>
+                        <option value="air">Air</option>
+                        <option value="land">Land</option>
+                        <option value="sea">Sea</option>
+                    </select></td>
+                </tr>
+                <br><br>
+                <tr>
+                    <td>Time of receive:</td>
+                    <td><input type="time" id='timeIn' name="recievetime"><input type="date" id="dateIn"
+                                                                                 name="recievedate"></td>
+                </tr>
+                <br>
+                <tr>
+                    <td>Estimated time to delivery:</td>
+                    <td><input type="time" id="timeOut" name="esttime"><input type="date"
+                                                                              id='dateOut'
+                                                                              name="estdate"></td>
+                </tr>
+                <br>
+            </table>
+            <br><br>
+        </fieldset>
+        <br><br>
+        <fieldset>
+            <legend><b>STATUS</b></legend>
+            <br><br>
+            STATUS:<br><input type="radio" id='waiting' name="status"><span style="color: yellow"> WAITING FOR DELIVERY QUOTE </span><br><br>
+            <input type="radio" id="delivering" name="status"> <span style="color: green"> DELIVERING </span><br><br>
+            <input type="radio" id="delivered" name="status"> <span style="color: blue"> DELIVERED </span><br><br>
+            <input type="radio" id="canceled" name="status"> <span style="color: red"> CANCELED </span><br><br>
+        </fieldset>
+        <br><br>
+        <fieldset>
+            <legend>AUTHORIZATION</legend>
+            Employee<input type="text" id="employee" name="username">
+            Password<input type="password" id="authkey" name="password">
+            <button type="button" onclick="authorizeAccess()">Authorize access</button>
+            <br><br>
+            <div id="authorizeInfo"></div>
+        </fieldset>
+        <br><br>
+        <fieldset>
+            <legend><b>CONFIRMATION</b></legend>
+            <input type="button" id="confirm" value="Confirm Package Information" onclick="closeForm();productManager.confirmPackageInformation();productManager.showListProduct()" disabled> <input
+                type="reset"
+                value="Reset">
+        </fieldset>
+    </fieldset>
+</form>
+<table id="package_list">
+    <tr>
+        <td class="packageListTd">ID</td>
+        <td class="packageListTd">PRODUCT NAME</td>
+        <td class="packageListTd">QUANTITY</td>
+        <td class="packageListTd">DESTINATION</td>
+        <td class="packageListTd">STATUS</td>
+    </tr>
+    <tbody id="list_product">
+
+    </tbody>
+    <!--<tr id="packagelistbigheading">
+        <td class="packageListTd" colspan="6">GENERAL INFORMATION</td>
+        <td class="packageListTd" rowspan="2">UNIT</td>
+        <td class="packageListTd" colspan="4">PROPOSITIONAL INFORMATION</td>
+        <td class="packageListTd" colspan="7">DELIVERY INFORMATION</td>
+        <td class="packageListTd" rowspan="2">STATUS</td>
+        <td class="packageListTd" rowspan="2">MODIFY</td>
+    </tr>
+    <tr id="packagelistheading">
+        <td class="packageListTd"><b>Package Name</b></td>
+        <td class="packageListTd"><b>Package ID</b></td>
+        <td class="packageListTd"><b>Package Description</b></td>
+        <td class="packageListTd"><b>Quantity</b></td>
+        <td class="packageListTd"><b>Package Image</b></td>
+        <td class="packageListTd"><b>Package Type</b></td>
+
+        <td class="packageListTd"><b>Weight</b></td>
+        <td class="packageListTd"><b>Height</b></td>
+        <td class="packageListTd"><b>Length</b></td>
+        <td class="packageListTd"><b>Width</b></td>
+        <td class="packageListTd"><b>Provider</b></td>
+        <td class="packageListTd"><b>Origin</b></td>
+        <td class="packageListTd"><b>Destination</b></td>
+        <td class="packageListTd"><b>Transporter</b></td>
+        <td class="packageListTd"><b>Transportation method</b></td>
+        <td class="packageListTd"><b>Time of receive</b></td>
+        <td class="packageListTd"><b>Estimated time to delivery</b></td>
+    </tr>
+    <tr>
+        <td class="packageListTd">TEPPY</td>
+        <td class="packageListTd">00001</td>
+        <td class="packageListTd">Orange juice drink</td>
+        <td class="packageListTd">24</td>
+        <td class="packageListTd"><img style="width: 80px" src="http://sovina.vn/wp-content/uploads/2016/09/CC15.jpg"></td>
+        <td class="packageListTd">Liquid</td>
+        <td class="packageListTd">bottled</td>
+        <td class="packageListTd">10</td>
+        <td class="packageListTd">12</td>
+        <td class="packageListTd">5</td>
+        <td class="packageListTd">5</td>
+        <td class="packageListTd">Minute Maid</td>
+        <td class="packageListTd">Vietnam</td>
+        <td class="packageListTd">Ha Noi, Vietnam</td>
+        <td class="packageListTd">VNpost</td>
+        <td class="packageListTd">Land</td>
+        <td class="packageListTd">12:00 20/02/20</td>
+        <td class="packageListTd">12:00 25/02/20</td>
+        <td class="packageListTd">DELIVERED!</td>
+        <td class="packageListTd">
+            <button>EDIT</button>
+            <br>
+            <button>DELETE</button>
+        </td>
+    </tr>
+    <tr>
+        <td class="packageListTd">TL-025</td>
+        <td class="packageListTd">00002</td>
+        <td class="packageListTd">Ballpen, black</td>
+        <td class="packageListTd">2000</td>
+        <td class="packageListTd"><img style="width: 80px" src="http://flexoffice.com.vn/product/small_1592_ButbiTL025_den.jpg"></td>
+        <td class="packageListTd"> Assembly</td>
+        <td class="packageListTd">piece</td>
+        <td class="packageListTd">0.05</td>
+        <td class="packageListTd">12</td>
+        <td class="packageListTd">1</td>
+        <td class="packageListTd">1</td>
+        <td class="packageListTd">Thiên Long</td>
+        <td class="packageListTd">Vietnam</td>
+        <td class="packageListTd">Hải Phòng, Vietnam</td>
+        <td class="packageListTd">Viettel post</td>
+        <td class="packageListTd">Land</td>
+        <td class="packageListTd">2:00 25/02/20</td>
+        <td class="packageListTd">15:00 27/02/20</td>
+        <td class="packageListTd">DELIVERING!</td>
+        <td class="packageListTd">
+            <button>EDIT</button>
+            <br>
+            <button>DELETE</button>
+        </td>
+    </tr>
+    <tr>
+        <td class="packageListTd">Iphone X</td>
+        <td class="packageListTd">00003</td>
+        <td class="packageListTd">Smartphone</td>
+        <td class="packageListTd">200</td>
+        <td class="packageListTd"><img style="width: 80px" src="https://i.ebayimg.com/images/i/382394089410-0-1/s-l1000.jpg"></td>
+        <td class="packageListTd">Assembly</td>
+        <td class="packageListTd">piece</td>
+        <td class="packageListTd">0.174</td>
+        <td class="packageListTd">143.6</td>
+        <td class="packageListTd">70.9</td>
+        <td class="packageListTd">7.7</td>
+        <td class="packageListTd">Apple</td>
+        <td class="packageListTd">China</td>
+        <td class="packageListTd">TP Hồ Chí Minh, Vietnam</td>
+        <td class="packageListTd">Giao hàng nhanh</td>
+        <td class="packageListTd">Air</td>
+        <td class="packageListTd">12:00 29/02/20</td>
+        <td class="packageListTd">12:00 1/03/20</td>
+        <td class="packageListTd">CANCELED!</td>
+        <td class="packageListTd">
+            <button>EDIT</button>
+            <br>
+            <button>DELETE</button>
+        </td>
+    </tr>
+    <tr>
+        <td class="packageListTd">PANADOL Extra</td>
+        <td class="packageListTd">00004</td>
+        <td class="packageListTd">Headache relieve medicine</td>
+        <td class="packageListTd">100</td>
+        <td class="packageListTd"><img style="width: 80px"
+                 src="https://www.panadol.com.au/content/dam/cf-consumer-healthcare/panadol/en_au/DCAU-PAN-EXTRA-1239-455x455-D1.png">
+        </td>
+        <td class="packageListTd">Medical</td>
+        <td class="packageListTd">blister</td>
+        <td class="packageListTd">0.025</td>
+        <td class="packageListTd">12</td>
+        <td class="packageListTd">5</td>
+        <td class="packageListTd">0.7</td>
+        <td class="packageListTd">Phamarcity</td>
+        <td class="packageListTd">Vietnam</td>
+        <td class="packageListTd">Ha Noi, Vietnam</td>
+        <td class="packageListTd">VNpost</td>
+        <td class="packageListTd">Land</td>
+        <td class="packageListTd">12:00 03/03/20</td>
+        <td class="packageListTd">12:00 17/03/20</td>
+        <td class="packageListTd">WAITING</td>
+        <td class="packageListTd">
+            <button>EDIT</button>
+            <br>
+            <button>DELETE</button>
+        </td>
+    </tr>-->
+</table>
+<script src="js/script.js"></script>
+</body>
+</html>

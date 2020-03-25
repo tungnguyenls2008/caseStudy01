@@ -185,6 +185,11 @@ function authorizeAccess() {
     getElement('confirm').disabled = false;
 }
 
+function resetAuthorization() {
+    getElement('authorizeInfo').innerHTML = "";
+    getElement('confirm').disabled = true;
+}
+
 function ProductManager() {
     this.confirmPackageInformation = function () {
         let name, desc, quantity, image/*, type*/, unit, weight, height, length, width, provider, origin, dest,
@@ -212,7 +217,6 @@ function ProductManager() {
 
         let product = new Product(name, desc, quantity, image/*, type*/, unit, weight, height, length, width, provider, origin, dest, transporter, transMethod, timeIn, timeOut, dateIn, dateOut, status);
         this.addProduct(product);
-        console.log(Product);
 
     };
     this.getProductToLocalStorage = function () {
@@ -231,30 +235,42 @@ function ProductManager() {
         this.storeData(products);
     };
     this.showProduct = function () {
-        let arr=[];
+        let arr = [];
         for (let i = 0; i < 10; i++) {
             let product = {
                 id: i, name: Product.name, quantity: Product.quantity, dest: Product.dest, status: Product.status
-
             };
             arr.push(product);
-        }console.log(arr);
+        }
+        console.log(arr);
         return arr;
     };
     this.showListProduct = function () {
-        let arr=productManager.showProduct();
-        let html='';
+        let arr = productManager.showProduct();
+        let html = '';
         for (let i = 0; i < arr.length; i++) {
-            html+="<tr>";
-            html+="<td class=\"packageListTd\">"+i+"</td>";
-            html+="<td class=\"packageListTd\">"+arr[i].name+"</td>";
-            html+="<td class=\"packageListTd\">"+arr[i].quantity+"</td>";
-            html+="<td class=\"packageListTd\">"+arr[i].dest+"</td>";
-            html+="<td class=\"packageListTd\">"+arr[i].status+"</td>";
-            html+="</tr>";
-        }getElement('list_product').innerHTML=html;
+            html += "<tr>";
+            html += "<td class=\"packageListTd\">" + padLeft(i + 1, 5) + "</td>";
+            html += "<td class=\"packageListTd\">" + arr[i].name + "</td>";
+            html += "<td class=\"packageListTd\">" + arr[i].quantity + "</td>";
+            html += "<td class=\"packageListTd\">" + arr[i].dest + "</td>";
+            html += "<td class=\"packageListTd\">" + arr[i].status + "</td>";
+            html += "</tr>";
+        }
+        getElement('list_product').innerHTML = html;
     }
 }
 
 let productManager = new ProductManager();
 
+function disableConfirmationBtn() {
+    getElement('confirm').disabled = true;
+}
+
+function padLeft(nr, n, str) {
+    return Array(n - String(nr).length + 1).join(str || '0') + nr;
+}
+
+Number.prototype.padLeft = function (n, str) {
+    return Array(n - String(this).length + 1).join(str || '0') + this;
+}

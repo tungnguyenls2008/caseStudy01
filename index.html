@@ -157,7 +157,7 @@
         <br><br>
         <fieldset>
             <legend><b>CONFIRMATION</b></legend>
-            <input type="button" id="confirm" value="Confirm Package Information" onclick="closeForm();productManager.confirmPackageInformation();productManager.showListProduct()" disabled> <input
+            <input type="button" id="confirm" value="Confirm Package Information" onclick="closeForm();disableConfirmationBtn();resetAuthorization();productManager.showListProduct();productManager.confirmPackageInformation()" disabled> <input
                 type="reset"
                 value="Reset">
         </fieldset>

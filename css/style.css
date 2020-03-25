@@ -1,14 +1,29 @@
 body{
     font-family: 'Spartan', serif;
     font-size: 13px;
+    width: fit-content;
+    margin: auto;
 }
 #package_list {
     border: 1px solid black;
-
+    background-color: green;
+    color: white;
+    width: fit-content;
+    margin: auto;
+}
+#list_product{
+    border: 1px solid black;
+    background-color: #faf3ff;
+    color: #050404;
+    width: fit-content;
+    margin: auto;
 }
 .packageListTd{
     border: 1px solid black;
+    width: fit-content;
+    margin: auto;
 }
+/*
 #packagelistheading{
     background-color: green;
     color: white;
@@ -16,4 +31,4 @@ body{
 #packagelistbigheading{
     background-color: brown;
     color: white;
-}
+}*/

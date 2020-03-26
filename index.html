@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>CASE STUDY [Module 01]</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
 
 </head>
-<body>
-<h1><b>PACKAGE LIST</b></h1>
-<input type="button" id="new_input" value="New Input" onclick="showForm()">
-<input type="button" id="close_form" value="Close form" onclick="closeForm()"><br><br>
+<body><fieldset><legend><h1><b>PRODUCT LIST</b></h1></legend>
+<table>
+    <tr>
+        <td><button type="button" onclick="showForm()" style="width: 200px;height: 40px;size: 24px"><strong>NEW ORDER</strong></button></td>
+        <td><input type="button" id="close_form" value="CLOSE FORM" onclick="closeForm()" style="width: 200px;height: 40px"></td>
+        <td><input type="button" id="show_list" value="SHOW LIST" onclick="showLocalStorage()" style="width: 200px;height: 40px"></td>
+        <td><input type="button" id="hide_list" value="HIDE LIST" onclick="hideLocalStorage()" style="width: 200px;height: 40px"></td>
+        <td><input type="button" id="clear_list" value="CLEAR LIST" onclick="clearLocalStorage()" style="width: 200px;height: 40px"></td>
+    </tr>
+</table>
 <form action="#" method="post" id="form-input" style="display: none">
     <fieldset>
         <legend><b>PACKAGE INFORMATION PROCESSING</b></legend>
@@ -28,10 +34,6 @@
                     <td><input type="number" id="quantity" name="quantity"></td>
                 </tr>
                 <tr>
-                    <td>ID:</td>
-                    <td><input type="text" id="productID" name="id"></td>
-                </tr>
-                <tr>
                     <td>DESCRIPTION:</td>
                     <td>
                 <textarea name="description" id="desc" rows="5" cols="40"
@@ -41,7 +43,7 @@
                     <td>IMAGE:</td>
                     <td>
                         <input type="file" id="image" name="packageImage" accept="image/*"/>
-                        <img style="width: 200px" alt="Package Image" src="packageImage"></td>
+                        <img style="width: 200px" alt="Package Image" src="productImage"></td>
                 </tr>
             </table>
             TYPE:
@@ -59,7 +61,11 @@
         <fieldset>
             <legend><b>PROPOSITIONAL INFORMATION</b></legend>
             <br><br>
-            <table><tr><td>Unit: </td><td><input type="text" id="unit" placeholder="Enter product's unit."></td></tr>
+            <table>
+                <tr>
+                    <td>Unit:</td>
+                    <td><input type="text" id="unit" placeholder="Enter product's unit."></td>
+                </tr>
                 <tr>
                     <td>
                         Weight:
@@ -102,35 +108,34 @@
                 <tr>
                     <td>Transporter:</td>
                     <td><select id="transporter">
-                        <option value="slt">Select one</option>
-                        <option value="GHN">Giao hàng nhanh</option>
-                        <option value="GHTK">Giao hàng tiết kiệm</option>
-                        <option value="NJV">NinjaVan</option>
-                        <option value="VTP">Viettel Post</option>
-                        <option value="VNP">VN Post</option>
+                        <option value="Select one">Select one</option>
+                        <option value="Giao hàng nhanh">Giao hàng nhanh</option>
+                        <option value="Giao hàng tiết kiệm">Giao hàng tiết kiệm</option>
+                        <option value="NinjaVan">NinjaVan</option>
+                        <option value="Viettel Post">Viettel Post</option>
+                        <option value="VN Post">VN Post</option>
                     </select></td>
                 </tr>
                 <tr>
                     <td>Transportation method:</td>
                     <td><select id="transMethod">
-                        <option value="slt">Select one</option>
-                        <option value="air">Air</option>
-                        <option value="land">Land</option>
-                        <option value="sea">Sea</option>
+                        <option value="Select one">Select one</option>
+                        <option value="Air">Air</option>
+                        <option value="Land">Land</option>
+                        <option value="Sea">Sea</option>
                     </select></td>
                 </tr>
                 <br><br>
                 <tr>
                     <td>Time of receive:</td>
-                    <td><input type="time" id='timeIn' name="recievetime"><input type="date" id="dateIn"
-                                                                                 name="recievedate"></td>
+                    <td><input type="time" id='timeIn'>
+                        <input type="date" id="dateIn"></td>
                 </tr>
                 <br>
                 <tr>
                     <td>Estimated time to delivery:</td>
-                    <td><input type="time" id="timeOut" name="esttime"><input type="date"
-                                                                              id='dateOut'
-                                                                              name="estdate"></td>
+                    <td><input type="time" id="timeOut">
+                        <input type="date" id='dateOut'></td>
                 </tr>
                 <br>
             </table>
@@ -140,16 +145,16 @@
         <fieldset>
             <legend><b>STATUS</b></legend>
             <br><br>
-            STATUS:<br><input type="radio" id='waiting' name="status"><span style="color: yellow"> WAITING FOR DELIVERY QUOTE </span><br><br>
-            <input type="radio" id="delivering" name="status"> <span style="color: green"> DELIVERING </span><br><br>
-            <input type="radio" id="delivered" name="status"> <span style="color: blue"> DELIVERED </span><br><br>
-            <input type="radio" id="canceled" name="status"> <span style="color: red"> CANCELED </span><br><br>
+            STATUS:<br><input type="radio" name="status" value="WAITING FOR DELIVERY QUOTE"><span style="color: yellow"> WAITING FOR DELIVERY QUOTE </span><br><br>
+            <input type="radio" name="status" value="DELIVERING"> <span style="color: green"> DELIVERING </span><br><br>
+            <input type="radio" name="status" value="DELIVERED"> <span style="color: blue"> DELIVERED </span><br><br>
+            <input type="radio" name="status" value="CANCELED"> <span style="color: red"> CANCELED </span><br><br>
         </fieldset>
         <br><br>
         <fieldset>
             <legend>AUTHORIZATION</legend>
             Employee<input type="text" id="employee" name="username">
-            Password<input type="password" id="authkey" name="password">
+            Password<input type="password" id="authKey" name="password">
             <button type="button" onclick="authorizeAccess()">Authorize access</button>
             <br><br>
             <div id="authorizeInfo"></div>
@@ -157,19 +162,29 @@
         <br><br>
         <fieldset>
             <legend><b>CONFIRMATION</b></legend>
-            <input type="button" id="confirm" value="Confirm Package Information" onclick="closeForm();disableConfirmationBtn();resetAuthorization();productManager.showListProduct();productManager.confirmPackageInformation()" disabled> <input
+            <input type="button" id="confirm" value="Confirm Package Information"
+                   onclick="closeForm();disableConfirmationBtn();resetAuthorization();productManager.confirmPackageInformation();productManager.showListProduct()"
+                   disabled> <input
                 type="reset"
                 value="Reset">
         </fieldset>
     </fieldset>
 </form>
-<table id="package_list">
+<table id="package_list" hidden>
     <tr>
         <td class="packageListTd">ID</td>
         <td class="packageListTd">PRODUCT NAME</td>
+        <td class="packageListTd">DESCRIPTION</td>
         <td class="packageListTd">QUANTITY</td>
-        <td class="packageListTd">DESTINATION</td>
+        <td class="packageListTd">IMAGE</td>
+        <td class="packageListTd">UNIT</td>
+        <td class="packageListTd">WEIGHT</td>
+        <td class="packageListTd">HEIGHT</td>
+        <td class="packageListTd">LENGTH</td>
+        <td class="packageListTd">WIDTH</td>
+        <td class="packageListTd">ORIGIN</td>
         <td class="packageListTd">STATUS</td>
+        <td class="packageListTd">ACTION</td>
     </tr>
     <tbody id="list_product">
 
@@ -309,6 +324,7 @@
         </td>
     </tr>-->
 </table>
+    </fieldset>
 <script src="js/script.js"></script>
 </body>
 </html>

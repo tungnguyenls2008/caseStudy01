@@ -20,147 +20,6 @@ function Product( name, desc, quantity, image/*, type*/, unit, weight, height, l
     this.dateIn = dateIn;
     this.dateOut = dateOut;
     this.status = status;
-
-    /*this.setName = function () {
-        this.name = getValue('name');
-        localStorage.name = getValue('name');
-    };
-    this.getName = function () {
-        return this.name;
-    };
-    this.setDesc = function () {
-        this.desc = getValue('desc');
-        localStorage.desc = getValue('desc');
-    };
-    this.getDesc = function () {
-        return this.desc;
-    };
-    this.setQuantity = function () {
-        this.quantity = getValue('quantity');
-        localStorage.quantity = getValue('quantity');
-    };
-    this.getQuantity = function () {
-        return this.quantity;
-    };
-    this.setImage = function () {
-        this.image = getValue('image');
-        localStorage.image = getValue('image');
-    };
-    this.getImage = function () {
-        return this.image;
-    };
-    this.setType = function () {
-        this.type = getValue('type');
-        localStorage.type = getValue('type');
-    };
-    this.getType = function () {
-        return this.type;
-    };
-    this.setUnit = function () {
-        this.unit = getValue('unit');
-        localStorage.unit = getValue('unit');
-    };
-    this.getUnit = function () {
-        return this.unit;
-    };
-    this.setWeight = function () {
-        this.weight = getValue('weight');
-        localStorage.weight = getValue('weight');
-    };
-    this.getWeight = function () {
-        return this.weight;
-    };
-    this.setHeight = function () {
-        this.height = getValue('height');
-        localStorage.height = getValue('height');
-    };
-    this.getHeight = function () {
-        return this.height;
-    };
-    this.setLength = function () {
-        this.length = getValue('length');
-        localStorage.Plength = getValue('length');
-    };
-    this.getLength = function () {
-        return this.length;
-    };
-    this.setWidth = function () {
-        this.width = getValue('width');
-        localStorage.width = getValue('width');
-    };
-    this.getWidth = function () {
-        return this.width;
-    };
-    this.setProvider = function () {
-        this.provider = getValue('provider');
-        localStorage.provider = getValue('provider');
-    };
-    this.getProvider = function () {
-        return this.provider;
-    };
-    this.setOrigin = function () {
-        this.origin = getValue('origin');
-        localStorage.origin = getValue('origin');
-    };
-    this.getOrigin = function () {
-        return this.origin;
-    };
-    this.setDest = function () {
-        this.dest = getValue('dest');
-        localStorage.dest = getValue('dest');
-    };
-    this.getDest = function () {
-        return this.dest;
-    };
-    this.setTransporter = function () {
-        this.transporter = getValue('transporter');
-        localStorage.transporter = getValue('transporter');
-    };
-    this.getTransporter = function () {
-        return this.transporter;
-    };
-    this.setTransMethod = function () {
-        this.transmethod = getValue('transMethod');
-        localStorage.transMethod = getValue('transMethod');
-    };
-    this.getTransMethod = function () {
-        return this.transmethod;
-    };
-    this.setTimeIn = function () {
-        this.timeIn = getValue('timeIn');
-        localStorage.timeIn = getValue('timeIn');
-    };
-    this.getTimeIn = function () {
-        return this.timeIn;
-    };
-    this.setTimeOut = function () {
-        this.timeOut = getValue('timeOut');
-        localStorage.timeOut = getValue('timeOut');
-    };
-    this.getTimeOut = function () {
-        return this.timeOut;
-    };
-    this.setDateIn = function () {
-        this.dateIn = getValue('dateIn');
-        localStorage.dateIn = getValue('dateIn');
-    };
-    this.getDateIn = function () {
-        return this.dateIn;
-    };
-    this.setDateOut = function () {
-        this.dateOut = getValue('dateOut');
-        localStorage.dateOut = getValue('dateOut');
-    };
-    this.getDateOut = function () {
-        return this.dateOut;
-    };
-    this.setStatus = function () {
-        this.status = getValue('status');
-        localStorage.status = getValue('status')
-    };
-    this.getStatus = function () {
-        return this.status;
-    }*/
 }
 
 
@@ -275,11 +134,32 @@ function ProductManager() {
             html += "<td class=\"packageListTd\">" + arr[i].width + "</td>";
             html += "<td class=\"packageListTd\">" + arr[i].origin + "</td>";
             html += "<td class=\"packageListTd\">" + arr[i].status + "</td>";
-            html += "<td class=\"packageListTd\"><button type=\"button\" onclick=\"editRow(this)\">EDIT</button><br><button type=\"button\" onclick=\"deleteRow(this)\">DELETE</button></td>"+
+            html += "<td class=\"packageListTd\"><button type=\"button\" onclick=\"editProductRow(this)\">EDIT</button><br><button type=\"button\" onclick=\"productManager.deleteProductRow(this)\">DELETE</button></td>"+
             "</td>";
             html += "</tr>";
         }
         getElement('list_product').innerHTML = html;
+    };
+    this.deleteProductRow=function (r) {
+        let i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("package_list").deleteRow(i);
+        let products=this.getProductToLocalStorage();
+        products=JSON.parse(products);
+        let tempArr=[];
+        for (let j = 0; j <products.length ; j++) {
+            if(i-1!==j){
+                tempArr.push(products[j]);
+            }
+        }
+        this.storeData(tempArr);
+    };
+    this.editProductRow=function (r) {
+        let i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("package_list").deleteRow(i);
+        let products=this.getProductToLocalStorage();
+        products=JSON.parse(products);
+
+        document.getElementById('name').value=products[i].name;
     }
 }
 
@@ -306,20 +186,5 @@ function showLocalStorage() {
 function hideLocalStorage() {
     document.getElementById('package_list').hidden=true;
 }
-function deleteRow(r) {
-    let i = r.parentNode.parentNode.rowIndex;
-    document.getElementById("package_list").deleteRow(i);
 
-    let arr = productManager.showProduct();
-    for (let j = 0; j < localStorage.length; j++) {
-        if (localStorage.key(i).indexOf('data') > -1) {
-            arr.push(localStorage.key(j));
-        }
-    }
-    for (let i = 0; i < arr.length; i++) {
-        localStorage.removeItem(arr[i]);
-    }
-}
-function editRow(r) {
 
-}

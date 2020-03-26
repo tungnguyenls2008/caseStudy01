@@ -5,9 +5,9 @@
     <title>CASE STUDY [Module 01]</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
-
+    <script src="js/script.js"></script>
 </head>
-<body><fieldset><legend><h1><b>PRODUCT LIST</b></h1></legend>
+<body onload="productManager.init()" onunload="productManager.finalize()"><fieldset><legend><h1><b>PRODUCT LIST</b></h1></legend>
 <table>
     <tr>
         <td><button type="button" onclick="showForm()" style="width: 200px;height: 40px;size: 24px"><strong>NEW ORDER</strong></button></td>
@@ -325,6 +325,7 @@
     </tr>-->
 </table>
     </fieldset>
-<script src="js/script.js"></script>
+
+
 </body>
 </html>
